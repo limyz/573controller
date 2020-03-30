@@ -10,7 +10,7 @@
 //       Micro only.
 //
 // by lyzzz
-// 2019-07-29
+// 2020-03-31
 //--------------------------------------------------------------------
 
 #include <Joystick.h>
@@ -19,6 +19,7 @@
 // LIS3LV02DL Definitions
 int _slave_id = 0x1D;
 #define CTRL_REG1 0x20
+#define CTRL_REG2 0x21
 
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,JOYSTICK_TYPE_GAMEPAD,
   5, 1,                  // Button Count, Hat Switch Count
@@ -39,12 +40,12 @@ byte i2c_read(byte address) {
 }
 
 void setup() {
-  // Initialize Button Pins
-  // Pins 2 and 3 are reserved for I2C
-  //pinMode(2, INPUT_PULLUP);
-  //pinMode(3, INPUT_PULLUP);
+  // Initialize Pins
+  // Pins 2 and 3 -> Guitar Accelerometer (I2C)
+  pinMode(2, INPUT_PULLUP);
+  pinMode(3, INPUT_PULLUP);
 
-  // Pins 5 to 9 -> R, G, B, Y, P
+  // Pins 5 to 9 -> Guitar R, G, B, Y, P Buttons
   pinMode(4, INPUT_PULLUP);
   pinMode(5, INPUT_PULLUP);
   pinMode(6, INPUT_PULLUP);
@@ -58,20 +59,15 @@ void setup() {
   // Initialise I2C for LIS3LV02DL
   Wire.begin();
   Wire.beginTransmission(_slave_id);
-  Wire.write(0x20); // CTRL_REG1 (20h)
-  Wire.write(0xC7);
+  Wire.write(CTRL_REG1);
+  Wire.write(0xF7);
   Wire.endTransmission();
 
   // Initialize Joystick Library
   Joystick.begin();
-  /*
-  Joystick.setXAxisRange(-8, 8);
-  Joystick.setYAxisRange(-8, 8);
-  Joystick.setZAxisRange(-8, 8);
- */
-  Joystick.setXAxisRange(-255, 255);
-  Joystick.setYAxisRange(-255, 255);
-  Joystick.setZAxisRange(-255, 255);
+  Joystick.setXAxisRange(-2048, 2048);
+  Joystick.setYAxisRange(-2048, 2048);
+  Joystick.setZAxisRange(-2048, 2048);
 }
 
 // Constant that maps the phyical pin to the joystick button.
@@ -83,12 +79,16 @@ int lastButtonState[5] = {0,0,0,0,0};
 int lastHatSwitchState[2] = {0,0};
 
 void loop() {
-  #define OUT_X 0x29
-  #define OUT_Y 0x2B
-  #define OUT_Z 0x2D
+  #define OUTX_L 0x28
+  #define OUTX_H 0x29
+  #define OUTY_L 0x2A
+  #define OUTY_H 0x2B
+  #define OUTZ_L 0x2C
+  #define OUTZ_H 0x2D
 
   bool valueChanged = false;
-  byte x_val = i2c_read(OUT_X), y_val = i2c_read(OUT_Y), z_val = i2c_read(OUT_Z);
+  byte x_val_l = i2c_read(OUTX_L), y_val_l = i2c_read(OUTY_L), z_val_l = i2c_read(OUTZ_L);
+  byte x_val_h = i2c_read(OUTX_H), y_val_h = i2c_read(OUTY_H), z_val_h = i2c_read(OUTZ_H);
   
   // Read pin values
   for (int index = 0; index < 5; index++) {
@@ -133,39 +133,9 @@ void loop() {
     if (lastHatSwitchState[1] == 1) {
       Joystick.setHatSwitch(0, 180);
     }
-  } // if the value changed
+  }
 
-  // thanks to @freespace
-  // https://forum.arduino.cc/index.php?topic=19779.0
-
-  /* The divisor of x,y, and z are chosen to give the "correct" value at 1g. They are worked out
-   by trial and error, but a rough starting point can be calculated as follows:
-   
-   1. divided by 128 to normalise the range
-   2. multiply by 2 since the range is +/- 2, 
-     * combined so this gives divided by 64, giving acceleration in gs
-   3. multiply by 9.8 to give acceleration in ms/s/s, 
-     * combined this gives multiply by 9.8/64 
-   4. to make things into nicer integer maths, invert 9.8/64 to give 6.5
-   5. now we can truncate and use divisor of 6, an integer, or sacrifice some cycles and use
-      a floating value around 6 which gives the "correct" value of 9.8m/s/s for an axis when that
-      axis is "pointing" towards the centre of the earth.
-   Note I have multiplied everything by 10 implicitly to keep us in int domain
-  */
-  
-  Joystick.setXAxis(x_val * 100 / 55);
-  Joystick.setYAxis(y_val * 100 / 55);
-  Joystick.setZAxis(z_val * 100 / 63);
-  
-  /*
-  Joystick.setXAxis(x_val * 100 / 8);
-  Joystick.setYAxis(y_val * 100 / 8);
-  Joystick.setZAxis(z_val * 100 / 8);
-  */
-
-  /*
-  Joystick.setXAxis(i2c_read(OUT_X));
-  Joystick.setYAxis(i2c_read(OUT_Y));
-  Joystick.setZAxis(i2c_read(OUT_Z));
-  */
+  Joystick.setXAxis(x_val_l | x_val_h << 8);
+  Joystick.setYAxis(y_val_l | y_val_h << 8);
+  Joystick.setZAxis(z_val_l | z_val_h << 8);
 }
