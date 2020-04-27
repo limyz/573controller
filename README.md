@@ -1,15 +1,22 @@
 # 573controller
 
-This repository houses several .ino files for use with an Arduino. Supported music game controllers include:
+This repository houses several Arduino .ino files for use with an Arduino Leonardo or Micro to transform it into music game controller. Supported controllers include:
+
 * _gfxg 
 
-Allows you to use an Arduino Leonardo or Micro to transform a Guitar Hero/GuitarFreaks/Gitadora guitar into a USB game controller
+Allows you to transform it into a a USB game controller for use with [Clone Hero](https://clonehero.net)/[DTXAL](http://senamih.com/dtxal)/Guitar Hero/GuitarFreaks/Gitadora.
+
 * _iidx
 
-Allows you to use an Arduino Leonardo or Micro to transform an IIDX controller into a USB game controller with full support for [beatmania IIDX INFINITAS](https://p.eagate.573.jp/game/eac2dx/infinitas).
+Allows you to transform it into a IIDX controller with full native support for [beatmania IIDX INFINITAS](https://p.eagate.573.jp/game/eac2dx/infinitas).
+
 * _iidx_2p
 
-Similar to _iidx but with buttons remapped from E1/E2 to E3/E4 for use with doubles play (DP).
+Similar to _iidx but with buttons remapped from E1/E2 to E3/E4 for use with doubles play (DP). For players using the 2P side for single play, simply modify E3/E4 to E1/E2 button mappings.
+
+* _sdvx
+
+Allows you to transform it into a SDVX controller with full native support for [SOUND VOLTEX III](https://p.eagate.573.jp/game/eacsdvx/iii).
 
 ## Requirements
 * Arduino Leonardo or Micro
@@ -17,4 +24,8 @@ Similar to _iidx but with buttons remapped from E1/E2 to E3/E4 for use with doub
 
 If you are using _iidx, it additionally requires:
 * [Quadrature Encoder Library for Arduino](https://github.com/PaulStoffregen/Encoder)
-* Replacement of `boards.txt` located in your `Arduino/hardware/avr` directory. This modifies the pid (Product ID) and vid (Vendor ID) for [beatmania IIDX INFINITAS](https://p.eagate.573.jp/game/eac2dx/infinitas) to accept in-game input.
+* Replacement of `boards.txt` located in your `Arduino/hardware/avr` directory. This allows [beatmania IIDX INFINITAS](https://p.eagate.573.jp/game/eac2dx/infinitas) to accept in-game input natively.
+
+If you are using _sdvx, it additionally requires:
+* [Quadrature Encoder Library for Arduino](https://github.com/PaulStoffregen/Encoder)
+* Replacement of `boards.txt` located in your `Arduino/hardware/avr` directory. This allows [SOUND VOLTEX III](https://p.eagate.573.jp/game/eacsdvx/iii) to accept in-game input natively.

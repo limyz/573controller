@@ -122,7 +122,7 @@ void loop() {
     }
   }
   
-  if (turnTable.read() >= 360 ) {
+  if (turnTable.read() >= 360) {
     turnTable.write(-360);
   }
   else if (turnTable.read() <= -360) {

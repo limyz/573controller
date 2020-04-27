@@ -112,9 +112,11 @@ void loop() {
           digitalWrite(A1, HIGH);
           break;
         case 7:
+          // set to button 8 if using for single play
           Joystick.setButton(10, currentButtonState);
           break;
         case 8:
+          // set to button 9 if using for single play
           Joystick.setButton(11, currentButtonState);
           break;
       }
@@ -122,7 +124,7 @@ void loop() {
     }
   }
   
-  if (turnTable.read() >= 360 ) {
+  if (turnTable.read() >= 360) {
     turnTable.write(-360);
   }
   else if (turnTable.read() <= -360) {
