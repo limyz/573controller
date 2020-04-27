@@ -123,10 +123,10 @@ void loop() {
   }
   
   if (turnTable.read() >= 360) {
-    turnTable.write(-360);
+    turnTable.write(-359);
   }
   else if (turnTable.read() <= -360) {
-    turnTable.write(360);
+    turnTable.write(359);
   }
   
   Joystick.setXAxis(turnTable.read());
