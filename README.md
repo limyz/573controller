@@ -6,6 +6,8 @@ This repository houses several Arduino .ino files for use with an Arduino Leonar
 
 Allows you to transform it into a a USB game controller for use with [Clone Hero](https://clonehero.net)/[DTXAL](http://senamih.com/dtxal)/Guitar Hero/GuitarFreaks/Gitadora. For instructions on how to convert an existing guitar into one, [check out 573controller's wiki](https://github.com/limyz/573controller/wiki/DIY-Guitar).
 
+To see the controller in action, do visit [APPROVED DTX Gaming over at YouTube, where this live stream specifically shows it in use].(https://youtu.be/GGR9hHf-6ow?t=180).
+
 * _iidx
 
 Allows you to transform it into a IIDX controller with full native support for [beatmania IIDX INFINITAS](https://p.eagate.573.jp/game/eac2dx/infinitas).
@@ -13,6 +15,8 @@ Allows you to transform it into a IIDX controller with full native support for [
 * _iidx_2p
 
 Similar to _iidx but with buttons remapped from E1/E2 to E3/E4 for use with doubles play (DP). For players using the 2P side for single play, simply modify E3/E4 to E1/E2 button mappings.
+
+For a demostration, do visit [nsa_spy99 over at Twitch, where it shows native mapping and performance in-game](https://www.twitch.tv/videos/609096674?t=00h06m55s).
 
 * _sdvx
 
