@@ -6,7 +6,7 @@ This repository houses several Arduino .ino files for use with an Arduino Leonar
 
 Allows you to transform it into a a USB game controller for use with [Clone Hero](https://clonehero.net)/[DTXAL](http://senamih.com/dtxal)/Guitar Hero/GuitarFreaks/Gitadora. For instructions on how to convert an existing guitar into one, [check out 573controller's wiki](https://github.com/limyz/573controller/wiki/DIY-Guitar).
 
-To see the controller in action, do visit [APPROVED DTX Gaming over at YouTube, where this live stream specifically shows it in use].(https://youtu.be/GGR9hHf-6ow?t=180).
+To see the controller in action, do visit [APPROVED DTX Gaming over at YouTube, where this live stream specifically shows it in use](https://youtu.be/GGR9hHf-6ow?t=180).
 
 * _iidx
 
