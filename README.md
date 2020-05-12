@@ -33,3 +33,9 @@ If you are using _iidx, it additionally requires:
 If you are using _sdvx, it additionally requires:
 * [Quadrature Encoder Library for Arduino](https://github.com/PaulStoffregen/Encoder)
 * Replacement of `boards.txt` located in your `Arduino/hardware/avr` directory. This allows [SOUND VOLTEX III](https://p.eagate.573.jp/game/eacsdvx/iii) to accept in-game input natively.
+
+## Donations Appreciated!
+
+[If you appreciate my work, why not treat me a beer?](paypal.me/limyz)
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2LAKJ8NZ4Z4FL)
