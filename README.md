@@ -36,6 +36,6 @@ If you are using _sdvx, it additionally requires:
 
 ## Donations Appreciated!
 
-[If you appreciate my work, why not treat me a beer?](paypal.me/limyz)
+[If you appreciate my work, why not treat me a beer?](https://paypal.me/limyz)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2LAKJ8NZ4Z4FL)
