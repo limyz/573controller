@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------
 // For use with a 573 or GH Guitar Controller
 //
-// This sketch maps a ADXL345 accelerometer via I2C and uses 7 digital 
+// This sketch maps a ADXL345 accelerometer via I2C and uses 7 digital
 // inputs - 5 buttons and a 2 hat switches for the pick.
 //
 // All digital pins are grounded when they are pressed.
@@ -70,12 +70,12 @@ int lastButtonState[5] = {0,0,0,0,0};
 int lastHatSwitchState[2] = {0,0};
 
 void loop() {
-  /* Get a new sensor event */ 
-  sensors_event_t event; 
+  /* Get a new sensor event */
+  sensors_event_t event;
   accel.getEvent(&event);
 
   bool valueChanged = false;
-  
+
   Joystick.setXAxis(event.acceleration.x);
   Joystick.setYAxis(event.acceleration.y);
   Joystick.setZAxis(event.acceleration.z);
@@ -84,23 +84,7 @@ void loop() {
   for (int index = 0; index < 5; index++) {
     int currentButtonState = !digitalRead(index + pinToButtonMap);
     if (currentButtonState != lastButtonState[index]) {
-      switch (index) {
-        case 0:
-          Joystick.setButton(0, currentButtonState);
-          break;
-        case 1:
-          Joystick.setButton(1, currentButtonState);
-          break;
-        case 2:
-          Joystick.setButton(2, currentButtonState);
-          break;
-        case 3:
-          Joystick.setButton(3, currentButtonState);
-          break; 
-        case 4:
-          Joystick.setButton(4, currentButtonState);
-          break;
-      }
+      Joystick.setButton(index, currentButtonState);
       lastButtonState[index] = currentButtonState;
     }
   }

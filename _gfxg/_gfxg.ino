@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------
 // For use with a 573 or GH Guitar Controller
 //
-// This sketch maps a LIS3LV02DL accelerometer via I2C and uses 7 digital 
+// This sketch maps a LIS3LV02DL accelerometer via I2C and uses 7 digital
 // inputs - 5 buttons and a 2 hat switches for the pick.
 //
 // All digital pins are grounded when they are pressed.
@@ -32,7 +32,7 @@ byte i2c_read(byte address) {
   Wire.beginTransmission(_slave_id);
   Wire.write(address);
   Wire.endTransmission();
-   
+
   Wire.requestFrom(_slave_id, 1);
   while(Wire.available()) {
    return Wire.read();
@@ -89,28 +89,12 @@ void loop() {
   bool valueChanged = false;
   byte x_val_l = i2c_read(OUTX_L), y_val_l = i2c_read(OUTY_L), z_val_l = i2c_read(OUTZ_L);
   byte x_val_h = i2c_read(OUTX_H), y_val_h = i2c_read(OUTY_H), z_val_h = i2c_read(OUTZ_H);
-  
+
   // Read pin values
   for (int index = 0; index < 5; index++) {
     int currentButtonState = !digitalRead(index + pinToButtonMap);
     if (currentButtonState != lastButtonState[index]) {
-      switch (index) {
-        case 0:
-          Joystick.setButton(0, currentButtonState);
-          break;
-        case 1:
-          Joystick.setButton(1, currentButtonState);
-          break;
-        case 2:
-          Joystick.setButton(2, currentButtonState);
-          break;
-        case 3:
-          Joystick.setButton(3, currentButtonState);
-          break; 
-        case 4:
-          Joystick.setButton(4, currentButtonState);
-          break;
-      }
+      Joystick.setButton(index, currentButtonState);
       lastButtonState[index] = currentButtonState;
     }
   }
