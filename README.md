@@ -20,7 +20,7 @@ Allows you to transform it into a IIDX controller with full native support for [
 
 Similar to _iidx but with buttons remapped from E1/E2 to E3/E4 for use with doubles play (DP). For players using the 2P side for single play, simply modify E3/E4 to E1/E2 button mappings.
 
-For a demostration, do visit [nsa_spy99 over at Twitch, where it shows native mapping and performance in-game](https://www.twitch.tv/videos/609096674?t=00h06m55s).
+For a demostration, do visit [nsa_spy99 over at Twitch, where it shows native mapping and performance in-game](https://www.twitch.tv/nsa_spy99).
 
 * _sdvx
 
