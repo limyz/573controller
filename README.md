@@ -2,6 +2,10 @@
 
 This repository houses several Arduino .ino files for use with an Arduino Leonardo or Micro to transform it into music game controller. Supported controllers include:
 
+* _ddr & _ddrTest
+
+Allows you to transform an it into a USB game controller consisting of 4 buttons. The actual machine has 16 sensors (4 for each pad) for input. Use `_ddrTest` to determine if the indivdual sensors are working.
+
 * _gfxg 
 
 Allows you to transform it into a a USB game controller for use with [Clone Hero](https://clonehero.net)/[DTXAL](http://senamih.com/dtxal)/Guitar Hero/GuitarFreaks/Gitadora. For instructions on how to convert an existing guitar into one, [check out 573controller's wiki](https://github.com/limyz/573controller/wiki/DIY-Guitar).
