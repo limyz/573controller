@@ -70,11 +70,8 @@ void setup() {
   Joystick.setZAxisRange(-2048, 2048);
 }
 
-// Constant that maps the phyical pin to the joystick button.
-const int pinToButtonMap = 4;
-const int pinToHatSwitchMap = 9;
-
-// Last state of the buttons
+byte keys[] = {6, 4, 5, 7, 8};
+byte pick[] = {9 ,10};
 int lastButtonState[5] = {0,0,0,0,0};
 int lastHatSwitchState[2] = {0,0};
 
@@ -92,7 +89,7 @@ void loop() {
 
   // Read pin values
   for (int index = 0; index < 5; index++) {
-    int currentButtonState = !digitalRead(index + pinToButtonMap);
+    int currentButtonState = !digitalRead(keys[index]);
     if (currentButtonState != lastButtonState[index]) {
       Joystick.setButton(index, currentButtonState);
       lastButtonState[index] = currentButtonState;
@@ -100,7 +97,7 @@ void loop() {
   }
 
   for (int index = 0; index < 2; index++) {
-    int currentHatSwitchState = digitalRead(index + pinToHatSwitchMap);
+    int currentHatSwitchState = digitalRead(pick[index]);
     if (currentHatSwitchState != lastHatSwitchState[index]) {
       valueChanged = true;
       lastHatSwitchState[index] = currentHatSwitchState;
